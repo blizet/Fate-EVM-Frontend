@@ -36,19 +36,20 @@ export const metadata: Metadata = {
     "Ethereum",
     "Polygon",
     "BSC",
-    "Base"
+    "Base",
   ],
   authors: [{ name: "Fate Protocol Team" }],
   creator: "Fate Protocol",
   publisher: "Fate Protocol",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
   metadataBase: new URL("https://evm.fate.stability.nexus"),
   alternates: {
     canonical: "https://evm.fate.stability.nexus",
+  },
+  robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    other: [{ rel: "manifest", url: "/manifest.json" }],
   },
   openGraph: {
     title: "Fate Protocol | Decentralized Prediction Markets",
@@ -58,7 +59,6 @@ export const metadata: Metadata = {
     siteName: "Fate Protocol",
     images: [
       {
-        // Default OG image for social sharing
         url: "https://evm.fate.stability.nexus/logo-dark.png",
         width: 1200,
         height: 630,
@@ -75,17 +75,6 @@ export const metadata: Metadata = {
       "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools.",
     images: ["https://evm.fate.stability.nexus/logo-dark.png"],
     creator: "@FateProtocol",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -128,11 +117,7 @@ export default function RootLayout({
               url: "https://evm.fate.stability.nexus",
               applicationCategory: "FinanceApplication",
               operatingSystem: "Web Browser",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
+              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
               creator: {
                 "@type": "Organization",
                 name: "Fate Protocol Team",
@@ -154,16 +139,12 @@ export default function RootLayout({
             }),
           }}
         />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ErrorBoundary>
           <ClientProviders>
-            {/* Navbar fixed */}
             <Navbar className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md" />
 
             <main>
