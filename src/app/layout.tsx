@@ -6,7 +6,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
     "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools. Buy bullCoins and bearCoins to predict price movements across multiple blockchain networks. Advanced DeFi trading with real-time price feeds and automated market making.",
   keywords: [
     "DeFi",
-    "prediction markets", 
+    "prediction markets",
     "Fate Protocol",
     "blockchain trading",
     "bullCoins",
@@ -49,16 +48,18 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://evm.fate.stability.nexus"),
   alternates: {
-    canonical: "/",
+    canonical: "https://evm.fate.stability.nexus",
   },
   openGraph: {
     title: "Fate Protocol | Decentralized Prediction Markets",
-    description: "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools. Buy bullCoins and bearCoins to predict price movements.",
+    description:
+      "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools. Buy bullCoins and bearCoins to predict price movements.",
     url: "https://evm.fate.stability.nexus",
     siteName: "Fate Protocol",
     images: [
       {
-        url: "https://evm.fate.stability.nexus/logo-white.png",
+        // Default OG image for social sharing
+        url: "https://evm.fate.stability.nexus/logo-dark.png",
         width: 1200,
         height: 630,
         alt: "Fate Protocol - Decentralized Prediction Markets",
@@ -70,8 +71,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Fate Protocol | Decentralized Prediction Markets",
-    description: "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools.",
-    images: ["https://evm.fate.stability.nexus/og-image.png"],
+    description:
+      "Trade prediction markets on Fate Protocol - the decentralized platform for perpetual prediction pools.",
+    images: ["https://evm.fate.stability.nexus/logo-dark.png"],
     creator: "@FateProtocol",
   },
   robots: {
@@ -89,12 +91,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Theme switch script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -103,7 +104,7 @@ export default function RootLayout({
                   var theme = localStorage.getItem('theme') || 'system';
                   var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                   var finalTheme = theme === 'system' ? systemTheme : theme;
-                  
+
                   if (finalTheme === 'dark') {
                     document.documentElement.classList.add('dark');
                   } else {
@@ -114,41 +115,43 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Fate Protocol",
-              "description": "Decentralized perpetual prediction pools for trading price movements across multiple blockchain networks",
-              "url": "https://evm.fate.stability.nexus",
-              "applicationCategory": "FinanceApplication",
-              "operatingSystem": "Web Browser",
-              "offers": {
+              name: "Fate Protocol",
+              description:
+                "Decentralized perpetual prediction pools for trading price movements across multiple blockchain networks",
+              url: "https://evm.fate.stability.nexus",
+              applicationCategory: "FinanceApplication",
+              operatingSystem: "Web Browser",
+              offers: {
                 "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
+                price: "0",
+                priceCurrency: "USD",
               },
-              "creator": {
+              creator: {
                 "@type": "Organization",
-                "name": "Fate Protocol Team",
-                "url": "https://evm.fate.stability.nexus"
+                name: "Fate Protocol Team",
+                url: "https://evm.fate.stability.nexus",
               },
-              "featureList": [
+              featureList: [
                 "Decentralized prediction markets",
                 "Perpetual prediction pools",
                 "Bull and Bear coin trading",
                 "Multi-chain support",
                 "Real-time price feeds",
                 "Automated market making",
-                "Chainlink oracle integration"
+                "Chainlink oracle integration",
               ],
-              "screenshot": "https://evm.fate.stability.nexus/og-image.png",
-              "softwareVersion": "1.0.0",
-              "datePublished": "2025-06-06",
-              "dateModified": new Date().toISOString().split('T')[0]
-            })
+              screenshot: "https://evm.fate.stability.nexus/og-image.png",
+              softwareVersion: "1.0.0",
+              datePublished: "2025-06-06",
+              dateModified: new Date().toISOString().split("T")[0],
+            }),
           }}
         />
         <link rel="icon" href="/favicon.ico" />
@@ -160,16 +163,14 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ErrorBoundary>
           <ClientProviders>
-          {/* Absolute positioned navbar to avoid affecting hero positioning */}
-          <Navbar className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md" />
-          
-          <main>
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
-          </main>
-          
-          <Footer className="pb-20 lg:pb-4" />
+            {/* Navbar fixed */}
+            <Navbar className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md" />
+
+            <main>
+              <ErrorBoundary>{children}</ErrorBoundary>
+            </main>
+
+            <Footer className="pb-20 lg:pb-4" />
           </ClientProviders>
         </ErrorBoundary>
       </body>
