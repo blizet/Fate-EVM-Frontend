@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: "Fate Protocol",
     images: [
       {
-        url: "https://evm.fate.stability.nexus/og-image.png",
+        url: "https://evm.fate.stability.nexus/logo-white.png",
         width: 1200,
         height: 630,
         alt: "Fate Protocol - Decentralized Prediction Markets",
